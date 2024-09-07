@@ -1,0 +1,70 @@
+import java.util.*;
+
+public class CheckForPalindrome {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Let's check for palindromes! Please enter a word or phrase: \n");
+        String possiblePalindrome = scanner.nextLine();
+
+        System.out.println("Let's see, you entered: " + possiblePalindrome);
+
+        /**
+         *  initializes an empty String object that will later be filled by user
+         */
+        String simplifiedString = "";
+
+        /**
+         *  Task: creates a characterArray and scans through the array.
+         *  If there is a char or int, that element is added to simplifiedString.
+         */
+        for (int i = 0; i < possiblePalindrome.length(); i++) {
+            char c = possiblePalindrome.charAt(i);
+        /**
+         * Task: makes all char in simplified String upper case
+         */
+            if (Character.isLetterOrDigit(c)) {
+                simplifiedString += Character.toUpperCase(c);
+                
+            }//end if statement
+            
+        }//end for loop
+
+        /**
+         * Task: pushes elements from simplified String onto Character Stack.
+         */
+        Stack<Character> stack = new Stack<>();
+        for (char c : simplifiedString.toCharArray()) {
+            stack.push(c);
+        }//end push to stack
+
+        /**
+         * Task: Pops the Stack and creates an array, then decides if the
+         * simpliedString String is a palindrome by comparing the char/int of the 
+         * Stack to the char/int in the String.
+         * @returns true if palindrome, false if not
+         */
+        boolean isPalindrome = true;
+        for (char c : simplifiedString.toCharArray()) {
+            if (stack.pop() != c) {
+                isPalindrome = false;
+                break;
+                
+            }//end if
+            
+        }//end for loop
+
+        /**
+         *Task: reads the result of isPalindrome and prints the appropriate response.
+         */
+        if (isPalindrome) {
+            System.out.println("\nThe input is a palindrome.");
+        }//end if 
+        else {
+            System.out.println("\nThe input is not a palindrome.");
+        }//end else
+        
+        
+    }//end main
+}//end class
